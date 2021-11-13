@@ -85,7 +85,17 @@ async function server() {
             const deleteResult = await ordersCollection.deleteOne(query);
             res.json(deleteResult);
         });
-        
+
+        // orders : PUT/Update Status
+        app.put('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            console.log('put', id);
+            const query = { _id: ObjectId(id) };
+            const updateDoc = { $set: { status: 'Approved' } };
+            const updateResult = await ordersCollection.updateOne(query, updateDoc);
+            res.json(updateResult);
+        });
+
         // reviews : POST a review
         app.post('/reviews', async (req, res) => {
             const review = req.body;

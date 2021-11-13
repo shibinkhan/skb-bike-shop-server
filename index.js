@@ -140,13 +140,6 @@ async function server() {
             };
             res.json({ admin: isAdmin });
         });
-
-
-
-
-
-        
-
     }
     finally {
         // await client.close();
